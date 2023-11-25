@@ -60,6 +60,36 @@
 
 <script>
 
+const buttons = document.querySelectorAll(".key");
+const audios = document.querySelectorAll("audio");
+
+const togglePlaying = (event) => {
+  for (let button of buttons) {
+    if (event.keyCode == button.dataset.key) {
+      button.classList.toggle("playing");
+      return;
+    }
+  }
+};
+
+const playSound = (event) => {
+  for (let audio of audios) {
+    if (event.keyCode == audio.dataset.key) {
+      audio.currentTime = 0;
+      audio.play();
+      return;
+    }
+  }
+};
+
+const playDrums = (event) => {
+  togglePlaying(event);
+  playSound(event);
+};
+
+document.addEventListener("keydown", playDrums);
+document.addEventListener("keyup", togglePlaying);
+
 </script>
 
 
